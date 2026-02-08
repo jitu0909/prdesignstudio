@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -8,9 +9,9 @@ const Footer = () => {
       <div className="container-fluid px-4 px-lg-5">
         <div className="row gy-5">
           <div className="col-lg-4">
-            <h3 className="h3 fw-bold font-heading text-white letter-spacing-2 text-uppercase mb-4">
-              PR<span className="text-gold">Design</span>
-            </h3>
+            <div className="mb-4">
+                <Logo light={true} />
+            </div>
             <p className="text-muted small mb-4" style={{ maxWidth: '300px' }}>
               A premier architectural and interior design studio based in Vadodara, dedicated to creating spaces that inspire and endure.
             </p>

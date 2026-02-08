@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import Logo from './Logo';
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -26,16 +27,15 @@ const Navbar = () => {
     const isHome = location.pathname === '/';
     
     // Minimalist logic
-    const navBackground = scroll ? 'bg-white border-bottom py-3' : (isHome ? 'bg-transparent py-4' : 'bg-white border-bottom py-3');
-    const textColor = scroll || !isHome ? 'text-dark' : 'text-white';
+    const navBackground = scroll ? 'bg-white border-bottom py-3 shadow-sm' : (isHome ? 'bg-transparent py-4' : 'bg-white border-bottom py-3');
+    const isLightMode = !(scroll || !isHome); // True if text should be white (transparent background)
+    const textColor = isLightMode ? 'text-white' : 'text-dark';
     
     return (
         <nav className={`navbar navbar-expand-lg fixed-top transition-all duration-300 ${navBackground}`}>
             <div className="container-fluid px-lg-5">
-                <Link to="/" className="navbar-brand" onClick={closeMobileMenu}>
-                    <span className={`h4 fw-bold font-heading ${textColor} letter-spacing-2 text-uppercase mb-0`}>
-                        PR<span className="fw-light">Design</span>
-                    </span>
+                <Link to="/" className="navbar-brand d-flex align-items-center" onClick={closeMobileMenu}>
+                    <Logo light={isLightMode} />
                 </Link>
 
                 <button className="navbar-toggler border-0 p-0" type="button" onClick={handleClick}>
