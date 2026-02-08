@@ -1,40 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { images } from '../constants/images';
 
 const Portfolio = () => {
-    const projects = [
-        { id: 1, img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "Luxury Apartment", cat: "Interior" },
-        { id: 2, img: "https://images.unsplash.com/photo-1600596542815-2495db9dc2c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "Modern Bungalow", cat: "Architecture" },
-        { id: 3, img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "Cozy Living Room", cat: "Interior" },
-        { id: 4, img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "City Hotel Lobby", cat: "Commercial" },
-        { id: 5, img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "Minimalist Kitchen", cat: "Interior" },
-        { id: 6, img: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", title: "Corporate Office", cat: "Commercial" },
-    ];
+    const [filter, setFilter] = useState('All');
+    const categories = ['All', 'Residential', 'Commercial', 'Interior', 'Architecture', 'Hospitality'];
+
+    const filteredProjects = filter === 'All' 
+        ? images.portfolio 
+        : images.portfolio.filter(item => item.category === filter);
 
     return (
         <div className="pt-5">
-            <div className="bg-dark-custom py-5 mt-5">
-                <div className="container py-5 text-center">
-                    <h1 className="display-4 text-white">Our Portfolio</h1>
-                    <p className="lead text-gold letter-spacing-2 text-uppercase">Selected Works</p>
-                </div>
-            </div>
+            <section className="section-padding pb-0">
+                <div className="container-fluid px-4 px-lg-5">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h6 className="text-uppercase text-gold letter-spacing-4 mb-3">Our Work</h6>
+                        <h1 className="display-1 fw-bold mb-5">Portfolio</h1>
+                    </motion.div>
 
-            <section className="section-padding">
-                <div className="container">
+                    {/* Filters */}
+                    <div className="d-flex flex-wrap gap-4 mb-5 pb-3 border-bottom border-dark">
+                        {categories.map((cat, index) => (
+                            <button 
+                                key={index} 
+                                onClick={() => setFilter(cat)}
+                                className={`btn p-0 text-uppercase letter-spacing-2 fw-bold border-0 bg-transparent ${filter === cat ? 'text-gold' : 'text-dark'}`}
+                                style={{ fontSize: '12px' }}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Masonry-style Grid */}
+            <section className="pb-5">
+                <div className="container-fluid px-4 px-lg-5">
                     <div className="row g-4">
-                        {projects.map((project) => (
-                            <div className="col-lg-4 col-md-6" key={project.id}>
-                                <div className="position-relative group overflow-hidden shadow-sm" style={{ height: '350px' }}>
-                                    <img 
-                                        src={project.img} 
-                                        alt={project.title} 
-                                        className="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" 
-                                    />
-                                    <div className="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white">
-                                        <h5 className="mb-1">{project.title}</h5>
-                                        <span className="badge bg-gold text-dark rounded-0">{project.cat}</span>
+                        {filteredProjects.map((project, index) => (
+                            <div className="col-lg-4 col-md-6" key={index}>
+                                <motion.div 
+                                    layout
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="mb-4"
+                                >
+                                    <div className="img-hover-zoom overflow-hidden mb-3">
+                                        <img src={project.src} alt={project.title} className="w-100" style={{ height: '500px', objectFit: 'cover' }} />
                                     </div>
-                                </div>
+                                    <h4 className="fw-bold mb-1">{project.title}</h4>
+                                    <p className="text-muted text-uppercase small letter-spacing-2">{project.category}</p>
+                                </motion.div>
                             </div>
                         ))}
                     </div>

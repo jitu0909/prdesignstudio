@@ -1,55 +1,60 @@
 import React from 'react';
-import { FaDraftingCompass, FaUserTie, FaAward, FaBuilding } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { images } from '../constants/images';
 
 const About = () => {
     return (
         <div className="pt-5">
-            {/* Page Header */}
-            <div className="bg-dark-custom py-5 mt-5">
-                <div className="container py-5 text-center">
-                    <h1 className="display-4 text-white">About Us</h1>
-                    <p className="lead text-gold letter-spacing-2 text-uppercase">Who We Are</p>
+            {/* Header */}
+            <section className="section-padding pb-0">
+                <div className="container-fluid px-4 px-lg-5">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <h6 className="text-uppercase text-gold letter-spacing-4 mb-3">Who We Are</h6>
+                        <h1 className="display-1 fw-bold mb-5">PR Design Studio</h1>
+                    </motion.div>
                 </div>
-            </div>
+            </section>
 
-            {/* Main Content */}
-            <section className="section-padding">
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-5 mb-5 mb-lg-0">
-                            <img 
-                                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
-                                alt="AR Payal Rana" 
-                                className="img-fluid shadow-lg"
+            {/* Main Content - Split */}
+            <section className="section-padding pt-4">
+                <div className="container-fluid px-0">
+                    <div className="row g-0">
+                        <div className="col-lg-6">
+                             <motion.img 
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                src={images.about} 
+                                alt="Our Studio" 
+                                className="w-100 h-100 object-fit-cover" 
+                                style={{ minHeight: '80vh' }}
                             />
                         </div>
-                        <div className="col-lg-7 ps-lg-5">
-                            <h2 className="mb-4">Visionary Architecture by <span className="text-gold">AR Payal Rana</span></h2>
-                            <p className="text-muted mb-4 lead">
-                                Founded in Vadodara, PR Design Studio has emerged as a leading name in architectural innovation and interior elegance.
-                            </p>
-                            <p className="text-muted mb-4">
-                                Our philosophy is simple: we believe that good design is not just about aesthetics, but about how a space makes you feel. 
-                                Whether it's a cozy home, a functional office, or a luxurious hotel, we approach every project with a fresh perspective 
-                                and a commitment to excellence.
-                            </p>
-                            <div className="row g-4 mt-4">
-                                <div className="col-md-6">
-                                    <div className="d-flex">
-                                        <FaDraftingCompass className="text-gold mt-1 me-3" size={30} />
-                                        <div>
-                                            <h5 className="mb-2">Innovative Design</h5>
-                                            <p className="text-muted small">Combining modern trends with timeless principles.</p>
-                                        </div>
+                        <div className="col-lg-6 p-5 p-lg-6 bg-light d-flex align-items-center">
+                            <div style={{ maxWidth: '650px' }}>
+                                <h2 className="display-5 fw-bold mb-4">Crafting Spaces with <span className="text-gold">Soul</span></h2>
+                                <p className="lead text-secondary mb-4">
+                                    Founded by <strong>AR Payal Rana</strong>, PR Design Studio is a Vadodara-based multidisciplinary practice. 
+                                    We believe that architecture is not just about walls and roofs, but about how light, space, and materials come together to evoke emotion.
+                                </p>
+                                <p className="text-muted mb-5">
+                                    Our approach is deeply rooted in the context of the site and the needs of our clients. 
+                                    Whether it's a luxury residence, a corporate office, or a boutique hotel, we bring a unique perspective that blends 
+                                    contemporary design principles with timeless aesthetics.
+                                </p>
+                                
+                                <div className="row g-4 mt-4">
+                                    <div className="col-6">
+                                        <h3 className="display-4 fw-bold text-black mb-0">50+</h3>
+                                        <p className="text-uppercase letter-spacing-2 small text-muted">Projects Completed</p>
                                     </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="d-flex">
-                                        <FaUserTie className="text-gold mt-1 me-3" size={30} />
-                                        <div>
-                                            <h5 className="mb-2">Client-Centric</h5>
-                                            <p className="text-muted small">Your vision is our blueprint. We listen, then we create.</p>
-                                        </div>
+                                    <div className="col-6">
+                                        <h3 className="display-4 fw-bold text-black mb-0">10+</h3>
+                                        <p className="text-uppercase letter-spacing-2 small text-muted">Years Experience</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,25 +63,21 @@ const About = () => {
                 </div>
             </section>
 
-            {/* Stats */}
-            <section className="bg-light py-5">
-                <div className="container">
-                    <div className="row text-center g-4">
-                        <div className="col-md-3 col-6">
-                            <h2 className="display-4 fw-bold text-dark">50+</h2>
-                            <p className="text-uppercase letter-spacing-2 small text-muted">Projects</p>
+             {/* Team/Leader Section */}
+             <section className="section-padding bg-white">
+                <div className="container-fluid px-4 px-lg-5">
+                    <div className="row align-items-center">
+                        <div className="col-lg-5 mb-5 mb-lg-0">
+                            <h2 className="display-4 fw-bold mb-4">AR Payal Rana</h2>
+                            <h5 className="text-gold text-uppercase letter-spacing-2 mb-4">Principal Architect</h5>
+                            <p className="text-muted lead">
+                                "Design is an exploration. Every project is an opportunity to discover something new about the way we live and interact with our environment."
+                            </p>
                         </div>
-                        <div className="col-md-3 col-6">
-                            <h2 className="display-4 fw-bold text-dark">10+</h2>
-                            <p className="text-uppercase letter-spacing-2 small text-muted">Years Exp</p>
-                        </div>
-                        <div className="col-md-3 col-6">
-                            <h2 className="display-4 fw-bold text-dark">25+</h2>
-                            <p className="text-uppercase letter-spacing-2 small text-muted">Cities</p>
-                        </div>
-                        <div className="col-md-3 col-6">
-                            <h2 className="display-4 fw-bold text-dark">100%</h2>
-                            <p className="text-uppercase letter-spacing-2 small text-muted">Satisfaction</p>
+                        <div className="col-lg-7">
+                             <div className="bg-light p-5 text-center">
+                                <h3 className="text-muted fst-italic">"Simplicity is the ultimate sophistication."</h3>
+                             </div>
                         </div>
                     </div>
                 </div>

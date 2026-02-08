@@ -1,79 +1,58 @@
 import React from 'react';
-import { FaInstagram, FaFacebookF, FaLinkedinIn, FaWhatsapp, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 const Footer = () => {
-    return (
-        <footer className="bg-dark-custom pt-5 pb-3">
-            <div className="container">
-                <div className="row g-5">
-                    <div className="col-lg-4">
-                        <h3 className="text-white mb-4" style={{ fontFamily: 'Playfair Display' }}>PR<span className="text-gold">Design</span> Studio</h3>
-                        <p className="text-white-50 mb-4">
-                            Creating spaces that inspire. We specialize in modern architecture, interior design, and sustainable living solutions across Vadodara and Gujarat.
-                        </p>
-                        <div className="d-flex gap-3">
-                            <a href="#" className="text-white-50 hover-text-gold transition"><FaInstagram size={20} /></a>
-                            <a href="#" className="text-white-50 hover-text-gold transition"><FaFacebookF size={20} /></a>
-                            <a href="#" className="text-white-50 hover-text-gold transition"><FaLinkedinIn size={20} /></a>
-                            <a href="#" className="text-white-50 hover-text-gold transition"><FaWhatsapp size={20} /></a>
-                        </div>
-                    </div>
+  return (
+    <footer className="bg-black text-white pt-5 pb-3 border-top border-secondary">
+      <div className="container-fluid px-4 px-lg-5">
+        <div className="row gy-5">
+          <div className="col-lg-4">
+            <h3 className="h3 fw-bold font-heading text-white letter-spacing-2 text-uppercase mb-4">
+              PR<span className="text-gold">Design</span>
+            </h3>
+            <p className="text-muted small mb-4" style={{ maxWidth: '300px' }}>
+              A premier architectural and interior design studio based in Vadodara, dedicated to creating spaces that inspire and endure.
+            </p>
+          </div>
+          
+          <div className="col-lg-2 col-6">
+            <h6 className="text-gold text-uppercase letter-spacing-2 mb-4 small">Menu</h6>
+            <ul className="list-unstyled d-flex flex-column gap-2">
+              <li><Link to="/" className="text-white-50 text-decoration-none small hover-white">Home</Link></li>
+              <li><Link to="/about" className="text-white-50 text-decoration-none small hover-white">About</Link></li>
+              <li><Link to="/services" className="text-white-50 text-decoration-none small hover-white">Services</Link></li>
+              <li><Link to="/portfolio" className="text-white-50 text-decoration-none small hover-white">Portfolio</Link></li>
+              <li><Link to="/contact" className="text-white-50 text-decoration-none small hover-white">Contact</Link></li>
+            </ul>
+          </div>
 
-                    <div className="col-lg-2 col-md-6">
-                        <h5 className="text-white text-uppercase mb-4" style={{ letterSpacing: '2px' }}>Links</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2"><Link to="/" className="text-white-50 text-decoration-none hover-text-white">Home</Link></li>
-                            <li className="mb-2"><Link to="/about" className="text-white-50 text-decoration-none hover-text-white">About Us</Link></li>
-                            <li className="mb-2"><Link to="/services" className="text-white-50 text-decoration-none hover-text-white">Services</Link></li>
-                            <li className="mb-2"><Link to="/portfolio" className="text-white-50 text-decoration-none hover-text-white">Portfolio</Link></li>
-                            <li className="mb-2"><Link to="/contact" className="text-white-50 text-decoration-none hover-text-white">Contact</Link></li>
-                        </ul>
-                    </div>
+          <div className="col-lg-3 col-6">
+            <h6 className="text-gold text-uppercase letter-spacing-2 mb-4 small">Contact</h6>
+            <ul className="list-unstyled d-flex flex-column gap-2">
+              <li className="text-white-50 small">Alkapuri, Vadodara, Gujarat</li>
+              <li className="text-white-50 small">+91 98765 43210</li>
+              <li className="text-white-50 small">hello@prdesignstudio.com</li>
+            </ul>
+          </div>
 
-                    <div className="col-lg-3 col-md-6">
-                        <h5 className="text-white text-uppercase mb-4" style={{ letterSpacing: '2px' }}>Services</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2 text-white-50">Architectural Design</li>
-                            <li className="mb-2 text-white-50">Interior Design</li>
-                            <li className="mb-2 text-white-50">3D Visualization</li>
-                            <li className="mb-2 text-white-50">Landscape Design</li>
-                            <li className="mb-2 text-white-50">Turnkey Projects</li>
-                        </ul>
-                    </div>
-
-                    <div className="col-lg-3">
-                        <h5 className="text-white text-uppercase mb-4" style={{ letterSpacing: '2px' }}>Contact</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-3 d-flex text-white-50">
-                                <FaMapMarkerAlt className="me-3 mt-1 text-gold" />
-                                <span>304, Royal Complex, Alkapuri,<br />Vadodara, Gujarat 390007</span>
-                            </li>
-                            <li className="mb-3 d-flex text-white-50">
-                                <FaPhone className="me-3 mt-1 text-gold" />
-                                <span>+91 98765 43210</span>
-                            </li>
-                            <li className="mb-3 d-flex text-white-50">
-                                <FaEnvelope className="me-3 mt-1 text-gold" />
-                                <span>contact@prdesignstudio.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <hr className="border-secondary opacity-25 my-5" />
-
-                <div className="row align-items-center">
-                    <div className="col-md-6 text-center text-md-start">
-                        <p className="mb-0 text-white-50 small">&copy; {new Date().getFullYear()} PR Design Studio. All Rights Reserved.</p>
-                    </div>
-                    <div className="col-md-6 text-center text-md-end mt-3 mt-md-0">
-                        <p className="mb-0 text-white-50 small">Designed by <span className="text-gold">TechTeam</span></p>
-                    </div>
-                </div>
+          <div className="col-lg-3">
+            <h6 className="text-gold text-uppercase letter-spacing-2 mb-4 small">Social</h6>
+            <div className="d-flex gap-3">
+              <a href="#" className="text-white hover-gold"><FaInstagram size={20} /></a>
+              <a href="#" className="text-white hover-gold"><FaLinkedin size={20} /></a>
+              <a href="#" className="text-white hover-gold"><FaFacebook size={20} /></a>
             </div>
-        </footer>
-    );
+          </div>
+        </div>
+
+        <div className="border-top border-secondary mt-5 pt-4 d-flex justify-content-between flex-wrap">
+          <p className="small text-muted mb-0">&copy; {new Date().getFullYear()} PR Design Studio. All rights reserved.</p>
+          <p className="small text-muted mb-0">Designed by PR Design Studio</p>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

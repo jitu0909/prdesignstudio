@@ -7,7 +7,7 @@ import { FaArrowRight } from 'react-icons/fa';
 const Home = () => {
     return (
         <div className="overflow-hidden">
-            {/* Minimalist Hero Section */}
+            {/* Minimalist Hero Section - Full Screen & Centered */}
             <header className="vh-100 position-relative d-flex align-items-center justify-content-center bg-black">
                 <div className="position-absolute w-100 h-100 opacity-60">
                      <motion.img 
@@ -19,14 +19,16 @@ const Home = () => {
                         alt="Hero Architecture" 
                     />
                 </div>
-                <div className="container position-relative z-1 text-center text-white">
+                {/* Changed container to container-fluid for wider spread, but kept content centered for impact */}
+                <div className="container-fluid px-4 px-lg-5 position-relative z-1 text-center text-white">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
+                        className="d-flex flex-column align-items-center"
                     >
                         <h6 className="text-uppercase letter-spacing-4 mb-4 text-gold">Architecture + Interiors</h6>
-                        <h1 className="hero-title mb-5">
+                        <h1 className="hero-title mb-5 w-100" style={{ maxWidth: '1200px' }}>
                             Defining <br />
                             <span className="fst-italic fw-light">Space & Light</span>
                         </h1>
@@ -37,70 +39,74 @@ const Home = () => {
                 </div>
             </header>
 
-            {/* Introduction - Charged Voids Inspired (Split Layout) */}
-            <section className="section-padding bg-white">
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-5 mb-5 mb-lg-0">
+            {/* Introduction - Full Width Split */}
+            <section className="bg-white">
+                <div className="container-fluid p-0">
+                    <div className="row g-0 align-items-center">
+                        <div className="col-lg-6 p-5 p-lg-6 d-flex align-items-center justify-content-center" style={{ minHeight: '80vh' }}>
                             <motion.div 
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
-                                className="pe-lg-5"
+                                className="px-lg-5"
+                                style={{ maxWidth: '600px' }}
                             >
                                 <h6 className="text-uppercase text-muted letter-spacing-2 mb-4" style={{ fontSize: '11px' }}>The Philosophy</h6>
-                                <h2 className="display-5 fw-bold mb-4 text-black">
+                                <h2 className="display-4 fw-bold mb-4 text-black">
                                     We create voids <br /> that are <span className="text-gold fst-italic">charged</span> with life.
                                 </h2>
-                                <p className="text-secondary mb-5" style={{ lineHeight: '1.9' }}>
+                                <p className="text-secondary mb-5 lead" style={{ lineHeight: '1.9' }}>
                                     At PR Design Studio, architecture is more than just building—it's about crafting experiences. 
                                     Led by <strong className="text-dark">AR Payal Rana</strong>, we explore the possibilities of 
                                     transcendent and spiritual character in architecture, blending modern minimalism with functional luxury.
                                 </p>
-                                <Link to="/about" className="text-uppercase text-dark fw-bold letter-spacing-2 small border-bottom border-dark pb-1">
+                                <Link to="/about" className="btn btn-custom px-4 py-3">
                                     Read Our Story
                                 </Link>
                             </motion.div>
                         </div>
-                        <div className="col-lg-7">
+                        <div className="col-lg-6 h-100">
                             <motion.div 
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="position-relative"
+                                className="h-100"
                             >
-                                <img src={images.about} alt="Studio Philosophy" className="w-100 shadow-sm" />
+                                <img src={images.about} alt="Studio Philosophy" className="w-100 h-100 object-fit-cover" style={{ minHeight: '80vh' }} />
                             </motion.div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Selected Works - Grid Layout */}
+            {/* Selected Works - Full Width Grid */}
             <section className="section-padding bg-light">
-                <div className="container">
-                    <div className="d-flex justify-content-between align-items-end mb-5">
-                        <h2 className="display-6 fw-bold mb-0">Selected Works</h2>
-                        <Link to="/portfolio" className="text-muted text-uppercase letter-spacing-2 small">All Projects</Link>
+                <div className="container-fluid px-4 px-lg-5">
+                    <div className="d-flex flex-column flex-md-row justify-content-between align-items-end mb-5 border-bottom border-dark pb-4">
+                        <h2 className="display-3 fw-bold mb-0">Selected Works</h2>
+                        <Link to="/portfolio" className="text-black text-uppercase letter-spacing-2 small fw-bold mt-3 mt-md-0">View All Projects <FaArrowRight className="ms-2"/></Link>
                     </div>
 
                     <div className="row g-4">
-                        {images.portfolio.map((project, index) => (
+                        {images.portfolio.slice(0, 4).map((project, index) => (
                             <div className="col-md-6" key={index}>
                                 <motion.div 
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="img-hover-zoom position-relative mb-3"
+                                    className="img-hover-zoom position-relative mb-3 group"
                                 >
-                                    <div className="overflow-hidden">
-                                        <img src={project.src} alt={project.title} className="w-100" style={{ height: '400px', objectFit: 'cover' }} />
-                                    </div>
-                                    <div className="mt-3">
-                                        <p className="text-gold text-uppercase letter-spacing-2 mb-1" style={{ fontSize: '10px' }}>{project.category}</p>
-                                        <h3 className="h4 fw-bold mb-0">{project.title}</h3>
+                                    <Link to="/portfolio" className="d-block overflow-hidden">
+                                        <img src={project.src} alt={project.title} className="w-100 grayscale-hover" style={{ height: '600px', objectFit: 'cover' }} />
+                                    </Link>
+                                    <div className="mt-3 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h3 className="h3 fw-bold mb-1">{project.title}</h3>
+                                            <p className="text-muted text-uppercase letter-spacing-2 mb-0" style={{ fontSize: '11px' }}>{project.category}</p>
+                                        </div>
+                                        <span className="text-gold fw-bold h4">+</span>
                                     </div>
                                 </motion.div>
                             </div>
@@ -109,13 +115,13 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Services List - TBC Architecture Inspired */}
+            {/* Services List - Clean & Minimal */}
             <section className="section-padding bg-white">
-                <div className="container">
+                <div className="container-fluid px-4 px-lg-5">
                     <div className="row">
                         <div className="col-lg-4 mb-5 mb-lg-0">
-                            <h2 className="display-5 fw-bold">Our Expertise</h2>
-                            <p className="text-muted mt-3">Comprehensive design solutions from concept to completion.</p>
+                            <h2 className="display-4 fw-bold">Our Expertise</h2>
+                            <p className="text-muted mt-3 lead">Comprehensive design solutions from concept to completion.</p>
                         </div>
                         <div className="col-lg-8">
                             {[
@@ -130,13 +136,13 @@ const Home = () => {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="service-card-minimal d-flex justify-content-between align-items-center"
+                                    className="service-card-minimal d-flex justify-content-between align-items-center border-top border-dark py-5"
                                 >
                                     <div>
-                                        <h4 className="fw-bold mb-1">{service.title}</h4>
-                                        <p className="text-muted mb-0 small">{service.desc}</p>
+                                        <h3 className="fw-bold mb-2">{service.title}</h3>
+                                        <p className="text-muted mb-0">{service.desc}</p>
                                     </div>
-                                    <FaArrowRight className="text-muted opacity-50" />
+                                    <FaArrowRight className="text-dark" size={24} />
                                 </motion.div>
                             ))}
                         </div>
@@ -144,11 +150,11 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Footer CTA */}
+            {/* Footer CTA - Full Width */}
             <section className="py-5 bg-black text-white text-center">
                 <div className="container py-5">
-                    <h2 className="display-4 fw-bold mb-4">Let's build something iconic.</h2>
-                    <Link to="/contact" className="btn btn-outline-light px-5 py-3 rounded-0 text-uppercase letter-spacing-2">
+                    <h2 className="display-2 fw-bold mb-4">Let's build something iconic.</h2>
+                    <Link to="/contact" className="btn btn-outline-light px-5 py-4 rounded-0 text-uppercase letter-spacing-2 mt-3">
                         Start a Project
                     </Link>
                 </div>
