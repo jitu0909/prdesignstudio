@@ -25,58 +25,37 @@ const Navbar = () => {
 
     const isHome = location.pathname === '/';
     
-    // Navbar background logic
-    const navBackground = scroll ? 'bg-white shadow-sm py-2' : (isHome ? 'bg-transparent py-4' : 'bg-white shadow-sm py-2');
+    // Minimalist logic
+    const navBackground = scroll ? 'bg-white border-bottom py-3' : (isHome ? 'bg-transparent py-4' : 'bg-white border-bottom py-3');
     const textColor = scroll || !isHome ? 'text-dark' : 'text-white';
-    const logoColor = scroll || !isHome ? 'text-dark' : 'text-white';
     
-    // Mobile menu background
-    const mobileMenuBg = 'bg-white';
-
     return (
-        <nav className={`navbar navbar-expand-lg fixed-top transition-all duration-500 ${navBackground}`}>
-            <div className="container">
-                <Link to="/" className="navbar-brand d-flex align-items-center" onClick={closeMobileMenu}>
-                    <div className="d-flex flex-column">
-                        <span className={`fw-bold h3 mb-0 font-heading ${logoColor}`} style={{ letterSpacing: '2px' }}>
-                            PR<span className="text-gold">Design</span>
-                        </span>
-                        <span className={`small text-uppercase ${scroll || !isHome ? 'text-muted' : 'text-white-50'}`} style={{ fontSize: '0.6rem', letterSpacing: '4px' }}>
-                            Studio
-                        </span>
-                    </div>
+        <nav className={`navbar navbar-expand-lg fixed-top transition-all duration-300 ${navBackground}`}>
+            <div className="container-fluid px-lg-5">
+                <Link to="/" className="navbar-brand" onClick={closeMobileMenu}>
+                    <span className={`h4 fw-bold font-heading ${textColor} letter-spacing-2 text-uppercase mb-0`}>
+                        PR<span className="fw-light">Design</span>
+                    </span>
                 </Link>
 
-                <button className="navbar-toggler border-0" type="button" onClick={handleClick}>
-                    {click ? 
-                        <FaTimes className={scroll || !isHome ? 'text-dark' : 'text-dark'} size={24} /> : 
-                        <FaBars className={textColor} size={24} />
-                    }
+                <button className="navbar-toggler border-0 p-0" type="button" onClick={handleClick}>
+                    {click ? <FaTimes className={textColor} size={20} /> : <FaBars className={textColor} size={20} />}
                 </button>
 
-                <div className={`collapse navbar-collapse ${click ? `show ${mobileMenuBg} p-4 p-lg-0 mt-3 mt-lg-0 shadow-lg rounded-3` : ''} justify-content-end`}>
-                    <ul className="navbar-nav align-items-center">
+                <div className={`collapse navbar-collapse ${click ? 'show bg-white p-4 mt-3 shadow-sm' : ''} justify-content-end`}>
+                    <ul className="navbar-nav align-items-center gap-4">
                         {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((item) => (
-                            <li className="nav-item mx-2" key={item}>
+                            <li className="nav-item" key={item}>
                                 <Link 
                                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                                    className={`nav-link text-uppercase fw-bold small ${click ? 'text-dark' : textColor}`}
-                                    style={{ letterSpacing: '1.5px', fontSize: '12px' }}
+                                    className={`nav-link text-uppercase small fw-semibold ${click ? 'text-dark' : textColor}`}
+                                    style={{ letterSpacing: '2px', fontSize: '11px' }}
                                     onClick={closeMobileMenu}
                                 >
                                     {item}
                                 </Link>
                             </li>
                         ))}
-                        <li className="nav-item ms-lg-4 mt-4 mt-lg-0">
-                            <Link 
-                                to="/contact" 
-                                className={`btn ${scroll || !isHome || click ? 'btn-custom' : 'btn-outline-light'} rounded-0 px-4`}
-                                onClick={closeMobileMenu}
-                            >
-                                Get a Quote
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>
