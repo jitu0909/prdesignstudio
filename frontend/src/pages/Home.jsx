@@ -19,16 +19,16 @@ const Home = () => {
                         alt="Hero Architecture" 
                     />
                 </div>
-                {/* Changed container to container-fluid for wider spread, but kept content centered for impact */}
-                <div className="container-fluid px-4 px-lg-5 position-relative z-1 text-center text-white">
+                {/* Full width container, no padding constraints for maximum impact */}
+                <div className="container-fluid position-relative z-1 text-center text-white px-0">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.5 }}
-                        className="d-flex flex-column align-items-center"
+                        className="d-flex flex-column align-items-center justify-content-center"
                     >
                         <h6 className="text-uppercase letter-spacing-4 mb-4 text-gold">Architecture + Interiors</h6>
-                        <h1 className="hero-title mb-5 w-100" style={{ maxWidth: '1200px' }}>
+                        <h1 className="hero-title mb-5 w-100 px-3" style={{ maxWidth: '1400px' }}>
                             Defining <br />
                             <span className="fst-italic fw-light">Space & Light</span>
                         </h1>
@@ -39,7 +39,7 @@ const Home = () => {
                 </div>
             </header>
 
-            {/* Introduction - Full Width Split */}
+            {/* Introduction - Full Width Split (Edge to Edge) */}
             <section className="bg-white">
                 <div className="container-fluid p-0">
                     <div className="row g-0 align-items-center">
@@ -49,7 +49,7 @@ const Home = () => {
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 className="px-lg-5"
-                                style={{ maxWidth: '600px' }}
+                                style={{ maxWidth: '700px' }}
                             >
                                 <h6 className="text-uppercase text-muted letter-spacing-2 mb-4" style={{ fontSize: '11px' }}>The Philosophy</h6>
                                 <h2 className="display-4 fw-bold mb-4 text-black">
@@ -80,15 +80,17 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Selected Works - Full Width Grid */}
+            {/* Selected Works - Full Width Grid (Removed padding constraints) */}
             <section className="section-padding bg-light">
-                <div className="container-fluid px-4 px-lg-5">
-                    <div className="d-flex flex-column flex-md-row justify-content-between align-items-end mb-5 border-bottom border-dark pb-4">
-                        <h2 className="display-3 fw-bold mb-0">Selected Works</h2>
-                        <Link to="/portfolio" className="text-black text-uppercase letter-spacing-2 small fw-bold mt-3 mt-md-0">View All Projects <FaArrowRight className="ms-2"/></Link>
+                <div className="container-fluid px-0"> 
+                    <div className="container-fluid px-4 px-lg-5 mb-5">
+                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-end border-bottom border-dark pb-4">
+                            <h2 className="display-3 fw-bold mb-0">Selected Works</h2>
+                            <Link to="/portfolio" className="text-black text-uppercase letter-spacing-2 small fw-bold mt-3 mt-md-0">View All Projects <FaArrowRight className="ms-2"/></Link>
+                        </div>
                     </div>
 
-                    <div className="row g-4">
+                    <div className="row g-0">
                         {images.portfolio.slice(0, 4).map((project, index) => (
                             <div className="col-md-6" key={index}>
                                 <motion.div 
@@ -96,17 +98,14 @@ const Home = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="img-hover-zoom position-relative mb-3 group"
+                                    className="img-hover-zoom position-relative group"
                                 >
                                     <Link to="/portfolio" className="d-block overflow-hidden">
-                                        <img src={project.src} alt={project.title} className="w-100 grayscale-hover" style={{ height: '600px', objectFit: 'cover' }} />
+                                        <img src={project.src} alt={project.title} className="w-100 grayscale-hover" style={{ height: '700px', objectFit: 'cover' }} />
                                     </Link>
-                                    <div className="mt-3 d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h3 className="h3 fw-bold mb-1">{project.title}</h3>
-                                            <p className="text-muted text-uppercase letter-spacing-2 mb-0" style={{ fontSize: '11px' }}>{project.category}</p>
-                                        </div>
-                                        <span className="text-gold fw-bold h4">+</span>
+                                    <div className="position-absolute bottom-0 start-0 w-100 p-5 bg-gradient-to-t from-black via-transparent to-transparent text-white">
+                                        <h3 className="h3 fw-bold mb-1">{project.title}</h3>
+                                        <p className="text-white-50 text-uppercase letter-spacing-2 mb-0" style={{ fontSize: '11px' }}>{project.category}</p>
                                     </div>
                                 </motion.div>
                             </div>
