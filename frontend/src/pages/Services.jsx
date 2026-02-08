@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { images } from '../constants/images';
-import { FaDraftingCompass, FaHome, FaBuilding, FaTree } from 'react-icons/fa';
+import { FaDraftingCompass, FaHome, FaBuilding, FaTree, FaArrowRight } from 'react-icons/fa';
+import PageHeader from '../components/PageHeader';
 
 const Services = () => {
     const services = [
@@ -32,46 +33,39 @@ const Services = () => {
     ];
 
     return (
-        <div className="pt-5">
-            <section className="section-padding pb-5">
-                <div className="container-fluid px-4 px-lg-5">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h6 className="text-uppercase text-gold letter-spacing-4 mb-3">What We Do</h6>
-                        <h1 className="display-1 fw-bold mb-5">Our Services</h1>
-                    </motion.div>
-                </div>
-            </section>
+        <div>
+            <PageHeader 
+                title="Our Services" 
+                subtitle="What We Do" 
+                image={images.services[2]} 
+            />
 
-            <section className="pb-5">
+            <section className="section-padding">
                 <div className="container-fluid px-4 px-lg-5">
-                    <div className="row g-5">
-                        {services.map((service, index) => (
-                            <div className="col-lg-6" key={index}>
-                                <motion.div 
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="h-100"
-                                >
-                                    <div className="mb-4 overflow-hidden position-relative group">
-                                         <img src={service.img} alt={service.title} className="w-100 object-fit-cover grayscale-hover" style={{ height: '400px' }} />
-                                    </div>
-                                    <div className="d-flex align-items-start gap-4">
-                                        <div className="text-gold mt-1">{service.icon}</div>
-                                        <div>
-                                            <h3 className="h2 fw-bold mb-3">{service.title}</h3>
-                                            <p className="text-muted lead" style={{ fontSize: '1.1rem' }}>{service.desc}</p>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                    {services.map((service, index) => (
+                        <motion.div 
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className={`row g-0 align-items-center mb-5 ${index % 2 !== 0 ? 'flex-row-reverse' : ''}`}
+                        >
+                            <div className="col-lg-6">
+                                <div className="img-hover-zoom overflow-hidden">
+                                    <img src={service.img} alt={service.title} className="w-100 object-fit-cover" style={{ height: '500px' }} />
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                            <div className="col-lg-6 p-5">
+                                <div className="text-gold mb-4">{service.icon}</div>
+                                <h2 className="display-4 fw-bold mb-4">{service.title}</h2>
+                                <p className="lead text-muted mb-4">{service.desc}</p>
+                                <button className="btn btn-link text-black text-uppercase letter-spacing-2 fw-bold p-0 text-decoration-none">
+                                    Learn More <FaArrowRight className="ms-2" />
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
         </div>

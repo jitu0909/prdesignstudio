@@ -1,24 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { images } from '../constants/images';
+import PageHeader from '../components/PageHeader';
 
 const Contact = () => {
     return (
-        <div className="pt-5">
-            <section className="section-padding pb-0">
-                <div className="container-fluid px-4 px-lg-5">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h6 className="text-uppercase text-gold letter-spacing-4 mb-3">Get in Touch</h6>
-                        <h1 className="display-1 fw-bold mb-5">Contact Us</h1>
-                    </motion.div>
-                </div>
-            </section>
+        <div>
+            <PageHeader 
+                title="Contact Us" 
+                subtitle="Get in Touch" 
+                image={images.services[0]} 
+            />
 
-            <section className="section-padding pt-4">
+            <section className="section-padding">
                 <div className="container-fluid px-0">
                     <div className="row g-0">
                         {/* Contact Info */}

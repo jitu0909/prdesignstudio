@@ -1,24 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { images } from '../constants/images';
 import { FaArrowRight } from 'react-icons/fa';
 
 const Home = () => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Auto-change hero image (Slider)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.hero.length);
+        }, 5000); // Change every 5 seconds
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className="overflow-hidden">
-            {/* Minimalist Hero Section - Full Screen & Centered */}
+            {/* Minimalist Hero Section - Full Screen Slider */}
             <header className="vh-100 position-relative d-flex align-items-center justify-content-center bg-black">
-                <div className="position-absolute w-100 h-100 opacity-60">
-                     <motion.img 
-                        initial={{ scale: 1.1, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.6 }}
+                <AnimatePresence mode="wait">
+                    <motion.div 
+                        key={currentImageIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.6 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 1.5 }}
-                        src={images.hero[0]} 
-                        className="w-100 h-100 object-fit-cover" 
-                        alt="Hero Architecture" 
-                    />
-                </div>
+                        className="position-absolute w-100 h-100"
+                    >
+                        <img 
+                            src={images.hero[currentImageIndex]} 
+                            className="w-100 h-100 object-fit-cover" 
+                            alt="Hero Architecture" 
+                        />
+                    </motion.div>
+                </AnimatePresence>
+                
                 {/* Full width container, no padding constraints for maximum impact */}
                 <div className="container-fluid position-relative z-1 text-center text-white px-0">
                     <motion.div
@@ -129,20 +146,23 @@ const Home = () => {
                                 { title: "Landscape", desc: "Harmonizing nature with built environments." },
                                 { title: "Project Management", desc: "Ensuring precision in every detail." }
                             ].map((service, index) => (
-                                <motion.div 
-                                    key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="service-card-minimal d-flex justify-content-between align-items-center border-top border-dark py-5"
-                                >
-                                    <div>
-                                        <h3 className="fw-bold mb-2">{service.title}</h3>
-                                        <p className="text-muted mb-0">{service.desc}</p>
-                                    </div>
-                                    <FaArrowRight className="text-dark" size={24} />
-                                </motion.div>
+                                <Link to="/services" key={index} className="text-decoration-none text-dark">
+                                    <motion.div 
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="service-card-minimal d-flex justify-content-between align-items-center border-top border-dark py-5 service-hover"
+                                    >
+                                        <div>
+                                            <h3 className="fw-bold mb-2">{service.title}</h3>
+                                            <p className="text-muted mb-0">{service.desc}</p>
+                                        </div>
+                                        <div className="arrow-icon">
+                                            <FaArrowRight size={24} />
+                                        </div>
+                                    </motion.div>
+                                </Link>
                             ))}
                         </div>
                     </div>
